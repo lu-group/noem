@@ -1,0 +1,47 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+.conda/
+
+# Pytest / coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDEs / editors
+.vscode/
+.idea/
+
+# Logs / runtime
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Secrets (按你项目实际情况增补)
+.env
+.env.*
