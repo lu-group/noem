@@ -27,10 +27,11 @@ If you use this data or code for academic research, you are encouraged to cite t
 
 ```
 @article{ouyang2025neural,
-  title={Neural-operator element method: Efficient and scalable finite element method enabled by reusable neural operators},
-  author={Ouyang, Weihang and Shin, Yeonjong and Liu, Si-Wei and Lu, Lu},
-  journal={arXiv preprint arXiv:2506.18427},
-  year={2025}
+  author  = {Ouyang, Weihang and Shin, Yeonjong and Liu, Si-Wei and Lu, Lu},
+  title   = {Neural-operator element method: Efficient and scalable finite element method enabled by reusable neural operators},
+  journal = {Nature Computational Science (Accepted)},
+  year    = {2026},
+  doi     = {https://doi.org/10.48550/arXiv.2506.18427}
 }
 ```
 
