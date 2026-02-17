@@ -17,21 +17,19 @@ def fem_eleK(x1, x2, EA=1):
 
 def one_energy(delta_u, EA_list, net, EA=1, n=50):
     """Element energy predicted by DeepONet for the middle element."""
-    x = torch.linspace(0, 1, n, requires_grad=True)
-    delta_u_input = torch.ones(n, 1) * delta_u
-    EA_input = torch.Tensor.repeat(EA_list, n, 1)
-    model_input = torch.cat(
-        (EA_input.view(n, 50), delta_u_input.view(n, 1), x.view(n, 1)), dim=1
-    )
-    input_scaler = net.config["input_scaler"]
-    input_scaler = torch.tensor([input_scaler], dtype=torch.float32)
-    model_input = model_input / input_scaler
-    output = net(model_input)
-    output_scaler = net.config["output_scaler"]
-    output_scaler = torch.tensor([output_scaler], dtype=torch.float32)
-    u = output * output_scaler
+    x = torch.linspace(0.01, 0.99, n, requires_grad=True)
+    EA_input = torch.tensor(EA_list, dtype=torch.float32).reshape(1, -1)
+    branch_output1 = net.branchnet_list[0](EA_input)
+    delta_u_input = torch.tensor([[delta_u]], dtype=torch.float32)
+    branch_output2 = net.branchnet_list[1](delta_u_input)
+    trunk_input = x.reshape(-1, 1)
+    trunk_output = net.trunk_net(trunk_input)
+    model_output = torch.matmul(branch_output1 * branch_output2, trunk_output.T)
+    added = delta_u * x
+    multerm = x * (1 - x)
+    u = model_output * x * (x - 1) + delta_u * x
     u_x = gradients.gradients(u, x)
-    energy = 0.5 * torch.sum(EA_list * u_x ** 2) / n
+    energy = 0.5 * torch.sum(EA_input * u_x ** 2) / n
     return energy
 
 def oneF(delta_u, EA_list, net, EA=1):
@@ -120,16 +118,16 @@ def visual(U, P, EA_list, net, n=100, is_show=True):
         elif 1 <= x[i] and x[i] < 2:
             delta_u = U[2] - U[1]
             tx = x[i] - 1
-            tEA_list = list(EA_list)
-            model_input = tEA_list + [delta_u, tx]
-            model_input = torch.tensor(model_input, dtype=torch.float32)
-            input_scaler = net.config["input_scaler"]
-            input_scaler = torch.tensor([input_scaler], dtype=torch.float32)
-            model_input = model_input / input_scaler
-            output = net(model_input)
-            output_scaler = net.config["output_scaler"]
-            output_scaler = torch.tensor([output_scaler], dtype=torch.float32)
-            u = output * output_scaler
+            x_input = torch.tensor(tx)
+            EA_input = torch.tensor(EA_list, dtype=torch.float32).reshape(1, -1)
+            branch_output1 = net.branchnet_list[0](EA_input)
+            delta_u_input = torch.tensor([[delta_u]], dtype=torch.float32)
+            branch_output2 = net.branchnet_list[1](delta_u_input)
+            trunk_input = x_input.reshape(-1, 1).to(torch.float32)
+            trunk_output = net.trunk_net(trunk_input)
+            model_output = torch.matmul(branch_output1 * branch_output2, trunk_output.T)
+            u = model_output * x_input * (x_input - 1) + delta_u * x_input
+
             u_pre.append(U[1] + u.item())
         else:
             u_pre.append(U[2] + (U[3] - U[2]) * (x[i] - 2))
@@ -222,14 +220,14 @@ def grf_1Dv2(x, l):
 
 if __name__ == '__main__':
     # Fix random seed
-    np.random.seed(12345)
+    # np.random.seed(12345)
     import grf as grf
     ele_loc = [0.5 * (1 / 50) for i in range(50)]
     ele_loc = np.array(ele_loc)
     _, EA_list = grf.grf(0, 1, 50, 0.3)
     EA_list = np.exp(EA_list)
-    deeponet = torch.load(r"ex1.2_don.pt", map_location="cpu")
-    P = 0.1
+    deeponet = torch.load(r"peda_ex2.pth", map_location="cpu")
+    P = 0.05
     u = solver(P, EA_list, deeponet)
     error = visual(u, P, EA_list, deeponet)
 

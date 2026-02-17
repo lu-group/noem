@@ -1,7 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from pathlib import Path
-from ex4.ex4_1.gendata import get_eleloc, binary_map
 import ex4.ex4_1.visualization as visualization
 import os, torch
 import ex4.fem_solver.fem_solver as fem_solver
@@ -11,6 +10,16 @@ BASE_DIR = Path(__file__).resolve().parent
 def transfer_nodeid(old_nodeid, existed_orignal_nodeid, existed_new_nodeid):
     idx = existed_orignal_nodeid.index(old_nodeid)
     return existed_new_nodeid[idx]
+
+def get_eleloc(node, mesh):
+    node = np.array(node)
+    mesh = np.array(mesh)
+    ele_loc = []
+    for ele in mesh:
+        ele_coords = node[ele]
+        ele_center = np.mean(ele_coords, axis=0)
+        ele_loc.append(ele_center)
+    return np.array(ele_loc)
 
 def del_nodo(node, mesh, x_start, x_end, y_start, y_end):
     new_node = {}
