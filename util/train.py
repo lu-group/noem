@@ -203,8 +203,8 @@ def train(net, batch_size, max_epoch, TOL, data_path, sample_name, model_path, m
 if __name__ == '__main__':
     data_path = os.getcwd() + r"\\"
     model_path = os.getcwd() + r"\\"
-    sample_name = "ex2.1"
-    model_name = "ex2.1_donv2"
+    sample_name = "multiscale_1d_problem.1"
+    model_name = "multiscale_1d_problem.1_donv2"
     batch_size = 1000
     TOL = 1e-8
     # branchinfo = {'act_fn': [nn.Tanh(), nn.Tanh(), nn.Tanh()], 'input_size': 64, 'output_size': 20,

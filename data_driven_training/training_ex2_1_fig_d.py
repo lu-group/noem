@@ -269,8 +269,8 @@ def train(net, batch_size, max_epoch, TOL,
 if __name__ == '__main__':
 
     project_path = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
-    data_path = project_path + r"\\ex2\\ex2_1\\training_data\\" 
-    model_path = os.getcwd() + r"\\ex2_1\\"  
+    data_path = project_path + r"\\multiscale_1d_problem\\multiscale_coefficient\\training_data\\"
+    model_path = os.getcwd() + r"\\multiscale_coefficient\\"
     import os
 
     if not os.path.exists(model_path):

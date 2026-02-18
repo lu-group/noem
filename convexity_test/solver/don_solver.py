@@ -1,4 +1,4 @@
-from ex2.solver.element import line_element as element
+from convexity_test.solver.element import line_element as element
 import numpy as np
 from scipy.sparse import csr_matrix, lil_matrix
 from scipy.sparse.linalg import spsolve

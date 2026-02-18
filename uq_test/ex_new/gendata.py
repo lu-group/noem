@@ -34,7 +34,7 @@ def collect_data(node_coords, mesh, U_range, ele_num, num_samples, k_list, c_lis
     else:
         return bc_branch_input, k_branch_input, trunk_input, label
 
-def save_results(bc_branch_input, k_branch_input, trunk_input, label, path, filename="ex4.1"):
+def save_results(bc_branch_input, k_branch_input, trunk_input, label, path, filename="darcy_flow.1"):
     # Check if the path exists
     import os
     if not os.path.exists(path):

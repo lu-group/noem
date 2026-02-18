@@ -1,0 +1,4 @@
+from comparison_gradient_value import run as compare_gradient_value
+from comparison_solution_value import run as comparison_solution_value
+compare_gradient_value()
+comparison_solution_value()

@@ -2,8 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.sparse import csr_matrix, lil_matrix
 from scipy.sparse.linalg import spsolve
-from uq_test.solver.element import line_element as element
-
+from multiscale_1d_problem.solver.element import line_element as element
 
 def solver(node, mesh, U_BC, U_nodeid, f_BC, f_nodeid, k_list, c_list):
     ele_node_num = 2

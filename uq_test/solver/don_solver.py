@@ -1,6 +1,6 @@
 # This modulus supports the analysis domain containing multiple don elements.
 
-from ex2.solver.element import line_element as element
+from uq_test.solver.element import line_element as element
 import numpy as np
 from scipy.sparse import csr_matrix, lil_matrix
 from scipy.sparse.linalg import spsolve

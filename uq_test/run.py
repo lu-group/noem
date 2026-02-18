@@ -142,19 +142,11 @@ def run(sam_num, l=0.3):
     diverged = []
     for i in range(len(result_list)):
         if result_list[i] is None:
-            diverged.append([uq_score_list[i][-1]])
+            diverged.append([uq_score_list[i][2], uq_score_list[i][-1]])
         else:
             converged.append([uq_score_list[i][-1]])
 
-    print("="*50)
-    print("Converged UQ scores:")
-    print(np.array(converged).reshape(-1).tolist())
-    print("Diverged UQ scores:")
-    for i in diverged:
-        print(i[0])
-
     print("=" * 50)
-    print("Average results:")
     converged = []
     diverged = []
     for i in range(len(result_list)):
@@ -163,18 +155,23 @@ def run(sam_num, l=0.3):
             diverged.append(meanvalue)
         else:
             converged.append(meanvalue)
-    print("Converged UQ scores:")
+    print("Converged UQ scores (Average):")
     print(np.array(converged).reshape(-1).tolist())
-    print("Diverged UQ scores:")
-    for i in diverged:
-        print(i)
+    print("Diverged UQ scores (Average):")
+    print(np.array(diverged).reshape(-1).tolist())
 
-
-
-
-
-
-
+    converged = []
+    diverged = []
+    for i in range(len(result_list)):
+        final_val = uq_score_list[i][-1]
+        if result_list[i] is None:
+            diverged.append(final_val)
+        else:
+            converged.append(final_val)
+    print("Converged UQ scores (Final):")
+    print(np.array(converged).reshape(-1).tolist())
+    print("Diverged UQ scores (Final):")
+    print(np.array(diverged).reshape(-1).tolist())
 
 if __name__ == "__main__":
     # Fix random seed
