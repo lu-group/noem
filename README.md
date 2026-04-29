@@ -60,7 +60,7 @@ If you use this data or code for academic research, you are encouraged to cite t
   volume  = {6},
   pages   = {417–429},
   year    = {2026},
-  doi     = {https://doi.org/10.48550/arXiv.2506.18427}
+  doi     = {https://doi.org/10.1038/s43588-026-00974-2}
 }
 ```
 
