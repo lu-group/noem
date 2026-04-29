@@ -56,7 +56,9 @@ If you use this data or code for academic research, you are encouraged to cite t
 @article{ouyang2025neural,
   author  = {Ouyang, Weihang and Shin, Yeonjong and Liu, Si-Wei and Lu, Lu},
   title   = {Neural-operator element method: Efficient and scalable finite element method enabled by reusable neural operators},
-  journal = {Nature Computational Science (Accepted)},
+  journal = {Nature Computational Science},
+  volume  = {6},
+  pages   = {417–429},
   year    = {2026},
   doi     = {https://doi.org/10.48550/arXiv.2506.18427}
 }
