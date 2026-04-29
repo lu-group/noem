@@ -53,7 +53,7 @@ Available entry points:
 If you use this data or code for academic research, you are encouraged to cite the following paper:
 
 ```
-@article{ouyang2025neural,
+@article{ouyang2026neural,
   author  = {Ouyang, Weihang and Shin, Yeonjong and Liu, Si-Wei and Lu, Lu},
   title   = {Neural-operator element method: Efficient and scalable finite element method enabled by reusable neural operators},
   journal = {Nature Computational Science},
