@@ -2,7 +2,7 @@
 
 # Neural-Operator Element Method (NOEM)
 
-The data and code for the paper [Neural-operator element method: Efficient and scalable finite element method enabled by reusable neural operators](https://arxiv.org/abs/2506.18427).
+The data and code for the paper [NOEM: efficient and scalable finite element method enabled by reusable neural operators](https://www.nature.com/articles/s43588-026-00974-2).
 
 
 ## Code
